@@ -14,7 +14,7 @@ class Timer {
   }
 }
 
-const myTimer = new Timer();
+export const myTimer = new Timer();
 
 setInterval(() => {
   myTimer.increaseTimer();
@@ -25,4 +25,3 @@ setInterval(() => {
 export const TimerView = observer(({ timer }: { timer: Timer }) => (
   <span>Seconds passed: {timer.secondsPassed}</span>
 ));
-

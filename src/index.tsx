@@ -1,30 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { makeAutoObservable } from "mobx";
-import { observer } from "mobx-react-lite";
+import { TimerView, myTimer } from "./timer-class";
+import { TimerViewH } from "./timer-hooks"
 
-class Timer {
-  secondsPassed = 0;
+const App = () => {
+  return (
+    <>
+      <TimerView timer={myTimer} />
+      <div><TimerViewH /></div>
+    </>
+  );
+};
 
-  constructor() {
-    makeAutoObservable(this);
-  }
-
-  increaseTimer() {
-    this.secondsPassed += 1;
-  }
-}
-
-const myTimer = new Timer();
-
-setInterval(() => {
-  myTimer.increaseTimer();
-}, 1000);
-
-// A function component wrapped with `observer` will reacts to any
-// future change in an observable it used before
-const TimerView = observer(({ timer }: { timer: Timer }) => (
-  <span>Seconds passed: {timer.secondsPassed}</span>
-));
-
-ReactDOM.render(<TimerView timer={myTimer} />, document.body);
+ReactDOM.render(<App />, document.body);
